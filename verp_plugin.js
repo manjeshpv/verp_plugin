@@ -10,7 +10,7 @@ exports.register = function() {
 
 exports.set_verp_mail_from = function (next, connection) {
     var transaction = connection.transaction;
-    var verp = ("" + transaction.uuid + "-RJ-" + transaction.rcpt_to).replace(/@/,"=").replace(/>/,"").replace(/</,"") + '@' + this.cfg.rpdomain.server;
+    var verp = transaction.uuid + '@' + this.cfg.rpdomain.server;
     transaction.mail_from = verp;
     this.loginfo("Writing Mail-From: " + transaction.mail_from);
     next();
